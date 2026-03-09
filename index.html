@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yiqin Lv 吕怡琴</title>
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      color: #333;
+      background: #fff;
+      margin: 0;
+      padding: 0;
+    }
+    a { color: #0077cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    h2 { border-bottom: 1px solid #ddd; padding-bottom: 6px; margin-top: 2.5rem; }
+    h3 { margin-bottom: 4px; }
+
+    /* ── Layout ── */
+    .page { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
+
+    /* ── Profile Header ── */
+    .profile {
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+    .profile-photo {
+      flex-shrink: 0;
+      width: 160px;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #eee;
+      display: block;
+    }
+    .profile-photo-placeholder {
+      flex-shrink: 0;
+      width: 160px;
+      height: 200px;
+      border-radius: 4px;
+      background: #e8e8e8;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 0.8rem;
+      text-align: center;
+      line-height: 1.4;
+    }
+    .profile-info h1 { margin: 0 0 0.15rem 0; font-size: 1.8rem; }
+    .profile-info .subtitle { color: #555; margin: 0 0 0.8rem 0; font-size: 1rem; }
+    .profile-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: 0.92rem; }
+    .profile-links a { display: inline-flex; align-items: center; gap: 4px; }
+
+    /* ── About ── */
+    .about p { margin: 0 0 0.8rem 0; }
+
+    /* ── Papers ── */
+    .paper {
+      display: flex;
+      gap: 1.4rem;
+      margin-bottom: 2rem;
+      align-items: flex-start;
+    }
+    .paper-thumb {
+      flex-shrink: 0;
+      width: 140px;
+      height: 90px;
+      object-fit: cover;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: #f5f5f5;
+    }
+    .paper-thumb-placeholder {
+      flex-shrink: 0;
+      width: 140px;
+      height: 90px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      color: #999;
+      text-align: center;
+      padding: 0.4rem;
+    }
+    .paper-body h3 { margin: 0 0 3px 0; font-size: 1rem; line-height: 1.4; }
+    .paper-authors { font-size: 0.88rem; color: #444; margin: 2px 0; }
+    .paper-authors strong { color: #222; }
+    .paper-venue { font-size: 0.88rem; color: #555; margin: 2px 0; }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 3px;
+      margin-left: 5px;
+      vertical-align: middle;
+    }
+    .badge-oral { background: #fff3cd; color: #856404; border: 1px solid #ffc107; }
+    .badge-ccfa { background: #d4edda; color: #155724; border: 1px solid #28a745; }
+    .badge-journal { background: #d1ecf1; color: #0c5460; border: 1px solid #17a2b8; }
+    .paper-links { font-size: 0.85rem; margin-top: 5px; display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .paper-links a { color: #0077cc; }
+    .paper-desc { font-size: 0.88rem; color: #555; margin-top: 5px; font-style: italic; }
+
+    /* ── Experience ── */
+    .exp-item {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.8rem;
+      align-items: flex-start;
+    }
+    .exp-icon {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      object-fit: contain;
+      background: #fafafa;
+      padding: 4px;
+    }
+    .exp-icon-placeholder {
+      flex-shrink: 0;
+      width: 56px;
+      height: 56px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .exp-body h3 { margin: 0 0 2px 0; font-size: 1rem; }
+    .exp-period { font-size: 0.85rem; color: #777; }
+    .exp-desc { font-size: 0.9rem; color: #444; margin-top: 4px; }
+
+    /* ── Awards ── */
+    ul.awards { padding-left: 1.4rem; }
+    ul.awards li { margin-bottom: 4px; font-size: 0.95rem; }
+
+    /* ── Services ── */
+    .services h3 { margin-bottom: 4px; font-size: 1rem; }
+    .services p { margin: 0 0 0.8rem 0; font-size: 0.93rem; }
+
+    /* ── Footer ── */
+    footer { margin-top: 3rem; border-top: 1px solid #ddd; padding-top: 1rem; font-size: 0.8rem; color: #999; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .profile { flex-direction: column; }
+      .profile-photo-placeholder { width: 100%; height: 180px; }
+      .paper { flex-direction: column; }
+      .paper-thumb-placeholder { width: 100%; height: 160px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ PROFILE HEADER ═══ -->
+  <div class="profile">
+    <div class="profile-photo-placeholder">
+      📷<br>Replace with<br>photo.jpg
+    </div>
+    <div class="profile-info">
+      <h1>Yiqin Lv &nbsp;<span style="font-size:1.2rem;font-weight:400;color:#555;">吕怡琴</span></h1>
+      <p class="subtitle">
+        Ph.D. Candidate @ NUDT &nbsp;|&nbsp; Joint Student @ Tsinghua University
+      </p>
+      <div class="profile-links">
+        <a href="mailto:lvyiqin98@nudt.edu.cn">📧 lvyiqin98@nudt.edu.cn</a>
+        <a href="https://scholar.google.com" target="_blank">🎓 Google Scholar</a>
+        <a href="https://github.com/" target="_blank">💻 GitHub</a>
+        <!-- <a href="./files/cv/cv_en.pdf">📄 CV (En)</a> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      I am a Ph.D. candidate in Mathematics at the
+      <a href="https://www.nudt.edu.cn/" target="_blank">National University of Defense Technology (NUDT)</a>,
+      advised by Prof. <a href="#">Zheng Xie</a> and Associate Prof. <a href="#">Qi Wang</a>.
+      I also spent a year as a joint Ph.D. student at the
+      <a href="https://www.tsinghua.edu.cn/" target="_blank">Department of Automation, Tsinghua University</a>,
+      under Prof. <a href="#">Xiangyang Ji</a>.
+    </p>
+    <p>
+      My research interests lie in <strong>Generative AI</strong>, <strong>Probabilistic Meta-Learning</strong>,
+      <strong>Natural Language Processing</strong>, and <strong>Large Decision-Making Models</strong>.
+      I am particularly focused on building theoretically-grounded, robust and adaptive AI systems.
+    </p>
+    <p>
+      I have interned at <strong>Qiyuan Lab</strong> (optimizer design) and <strong>Alibaba Taobao Group</strong>
+      (generative auto-bidding), where I co-first-authored the ICLR 2026 Oral paper AIGB-Pearl.
+      I am open to collaborations and discussions.
+    </p>
+  </section>
+
+  <!-- ═══ SELECTED PAPERS ═══ -->
+  <section>
+    <h2>Selected Papers</h2>
+    <p style="font-size:0.88rem;color:#777;">* indicates equal contribution. <a href="publications.html">View all papers »</a></p>
+
+    <!-- Paper 5: ICLR 2026 Oral -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">AIGB-Pearl<br>ICLR 2026</div>
+      <div class="paper-body">
+        <h3>Enhancing Generative Auto-bidding with Offline Reward Evaluation and Policy Search</h3>
+        <p class="paper-authors">Zhiyu Mou*, <strong>Yiqin Lv*</strong>, Miao Xu, Qi Wang, Yixiu Mao, Qichen Ye, Chao Li, Rongquan Bai, Chuan Yu, Jian Xu, Bo Zheng</p>
+        <p class="paper-venue">
+          ICLR 2026
+          <span class="badge badge-oral">Oral</span>
+          <span class="badge badge-ccfa">CAAI-A</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+          <a href="#">[Project]</a>
+          <a href="#">[Code]</a>
+        </div>
+        <p class="paper-desc">A generative auto-bidding framework using offline reward evaluation and policy search for advertising optimization.</p>
+      </div>
+    </div>
+
+    <!-- Paper 1: TPAMI 2026 -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">TTRM<br>TPAMI 2026</div>
+      <div class="paper-body">
+        <h3>Tail Task Risk Minimization in Meta-Learning from Theoretical Advances to Practical Strategies</h3>
+        <p class="paper-authors"><strong>Yiqin Lv</strong>, Dong Liang, Wumei Du, Zenglin Shi, Zheng Xie, Qi Wang, Meng Wang</p>
+        <p class="paper-venue">
+          IEEE TPAMI 2026
+          <span class="badge badge-journal">CCF-A Journal</span>
+          <span class="badge badge-journal" style="background:#e2d9f3;color:#4a235a;border-color:#9b59b6;">IF=18.6</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+        </div>
+        <p class="paper-desc">Theoretical and practical advances on tail task risk minimization for more robust meta-learning.</p>
+      </div>
+    </div>
+
+    <!-- Paper 6: KDD 2025 -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">RAFA<br>KDD 2025</div>
+      <div class="paper-body">
+        <h3>Robust Fast Adaptation from Adversarially Explicit Task Distribution Generation</h3>
+        <p class="paper-authors">Qi Wang*, <strong>Yiqin Lv*</strong>, Yixiu Mao*, Yun Qu, Yi Xu, Xiangyang Ji</p>
+        <p class="paper-venue">
+          KDD 2025
+          <span class="badge badge-ccfa">CAAI/CCF-A</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+          <a href="#">[Project]</a>
+          <a href="#">[Video]</a>
+        </div>
+        <p class="paper-desc">Adversarially-generated task distributions enable fast and robust meta-learning adaptation.</p>
+      </div>
+    </div>
+
+    <!-- Paper 2: NeurIPS 2024 -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">TTRM+<br>NeurIPS 2024</div>
+      <div class="paper-body">
+        <h3>Theoretical Investigations and Practical Enhancements on Tail Task Risk Minimization in Meta Learning</h3>
+        <p class="paper-authors"><strong>Yiqin Lv</strong>, Qi Wang, Dong Liang, Zheng Xie</p>
+        <p class="paper-venue">
+          NeurIPS 2024
+          <span class="badge badge-ccfa">CAAI/CCF-A</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+        </div>
+        <p class="paper-desc">Deeper theoretical analysis and practical improvements for tail risk minimization in meta-learning.</p>
+      </div>
+    </div>
+
+    <!-- Paper 7: NeurIPS 2023 -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">RML<br>NeurIPS 2023</div>
+      <div class="paper-body">
+        <h3>A Simple Yet Effective Strategy to Robustify the Meta Learning Paradigm</h3>
+        <p class="paper-authors">Qi Wang*, <strong>Yiqin Lv*</strong>, Yanghe Feng, Zheng Xie, Jincai Huang</p>
+        <p class="paper-venue">
+          NeurIPS 2023
+          <span class="badge badge-ccfa">CAAI/CCF-A</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+        </div>
+        <p class="paper-desc">A practical and theoretically-supported strategy to make meta-learning more robust.</p>
+      </div>
+    </div>
+
+    <!-- Paper 3: CIKM 2023 -->
+    <div class="paper">
+      <div class="paper-thumb-placeholder">MGPAS<br>CIKM 2023</div>
+      <div class="paper-body">
+        <h3>Multi-scale Graph Pooling Approach with Adaptive Key Subgraph for Graph Representations</h3>
+        <p class="paper-authors"><strong>Yiqin Lv</strong>, Zhiliang Tian, Zheng Xie, Yiping Song</p>
+        <p class="paper-venue">
+          CIKM 2023
+          <span class="badge badge-ccfa" style="background:#fff0e6;color:#7d3c00;border-color:#e67e22;">CCF-B</span>
+        </p>
+        <div class="paper-links">
+          <a href="#">[Paper]</a>
+        </div>
+        <p class="paper-desc">Multi-scale graph pooling with adaptive subgraph selection for improved graph-level representations.</p>
+      </div>
+    </div>
+
+    <p><a href="publications.html">View All Papers »</a></p>
+  </section>
+
+  <!-- ═══ EXPERIENCE ═══ -->
+  <section>
+    <h2>Experience</h2>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🏛️</div>
+      <div class="exp-body">
+        <h3>Alibaba · Taobao Group</h3>
+        <div class="exp-period">Research Intern &nbsp;|&nbsp; Mar 2025 – Sep 2025</div>
+        <p class="exp-desc">
+          Intelligent Algorithm Products Division, Ad Algorithm Team (全站推广).
+          Focused on generative auto-bidding algorithm R&D.
+          Co-first-authored AIGB-Pearl, accepted at <strong>ICLR 2026 Oral</strong>.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🔬</div>
+      <div class="exp-body">
+        <h3>Qiyuan Lab 启元实验室</h3>
+        <div class="exp-period">Research Intern &nbsp;|&nbsp; Jun 2024 – Sep 2024</div>
+        <p class="exp-desc">
+          Intelligent Foundations Research Center.
+          Focused on optimizer design and its applications.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🎓</div>
+      <div class="exp-body">
+        <h3>Tsinghua University 清华大学</h3>
+        <div class="exp-period">Joint Ph.D. Student &nbsp;|&nbsp; Nov 2023 – Nov 2024</div>
+        <p class="exp-desc">
+          Department of Automation. Advised by Prof. Xiangyang Ji.
+          Research on large decision-making models.
+          Co-first-authored <em>Robust Fast Adaptation</em> (KDD 2025).
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🏫</div>
+      <div class="exp-body">
+        <h3>National University of Defense Technology 国防科技大学</h3>
+        <div class="exp-period">Ph.D., Mathematics &nbsp;|&nbsp; Mar 2023 – Present</div>
+        <p class="exp-desc">
+          Advisors: Prof. Zheng Xie, Associate Prof. Qi Wang.<br>
+          Research: Generative AI, Probabilistic Meta-Learning, NLP, Decision LLMs.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🏫</div>
+      <div class="exp-body">
+        <h3>National University of Defense Technology 国防科技大学</h3>
+        <div class="exp-period">M.S., Mathematics &nbsp;|&nbsp; Sep 2020 – Dec 2022</div>
+        <p class="exp-desc">
+          Advisors: Prof. Zheng Xie, Associate Prof. Yiping Song.<br>
+          Thesis: Scientific paper classification via heterogeneous graphs.
+          Graduated as <em>Outstanding Graduate</em>.
+        </p>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-icon-placeholder">🏫</div>
+      <div class="exp-body">
+        <h3>Tianjin Normal University 天津师范大学</h3>
+        <div class="exp-period">B.S., Mathematics &amp; Applied Mathematics &nbsp;|&nbsp; Sep 2016 – Jun 2020</div>
+        <p class="exp-desc">
+          Ranked <strong>1st / 243</strong> in major. Admitted to graduate school via recommendation (免试推荐).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ AWARDS ═══ -->
+  <section>
+    <h2>Selected Awards</h2>
+    <ul class="awards">
+      <li>NUDT Second-Class Excellence Scholarship | 国防科技大学二等优秀奖学金 (2024)</li>
+      <li>Third Prize, 20th China Graduate Mathematical Modeling Contest (Huawei Cup) | 华为杯三等奖 (2023)</li>
+      <li>Outstanding Graduate, NUDT | 国防科技大学校级优秀毕业生 (2022)</li>
+      <li>NUDT Qiangji First-Class Scholarship | 国防科技大学强基一等奖学金 (2022)</li>
+      <li>Outstanding Student, Tianjin Municipality | 天津市优秀学生 (2020)</li>
+      <li>First Prize, National College Mathematics Competition | 全国大学生数学竞赛一等奖 (2019)</li>
+      <li>National Scholarship | 国家奖学金 (2018)</li>
+    </ul>
+  </section>
+
+  <!-- ═══ SERVICES ═══ -->
+  <section class="services">
+    <h2>Services</h2>
+    <h3>Conference Reviewer / Program Committee</h3>
+    <p>AAAI (Program Committee); NeurIPS; ICLR; ICML; TNNLS.</p>
+
+    <h3>Invited Talks</h3>
+    <p>
+      RLChina 2024 — <em>Robust Fast Adaptation from Adversarially Explicit Task Distribution Generation</em><br>
+      RLChina 2023 — <em>A Simple Yet Effective Strategy to Robustify the Meta Learning Paradigm</em>
+    </p>
+
+    <h3>Research Projects (PI or Key Member)</h3>
+    <p>
+      <strong>Robust Optimization Theory and Applications in Meta-Learning</strong> (2024–2026)<br>
+      Graduate Research Innovation Project · PI · ¥30,000<br><br>
+      <strong>Stable Generation of Large Models via Generative Simulation Intelligence</strong> (2023–2024)<br>
+      JW Science & Technology Committee · Key Member<br><br>
+      <strong>Diverse High-Fidelity Techniques for Neural Process Models</strong> (2024–2026)<br>
+      NSFC Young Scientists Fund · NSFC: 62306326 · Key Member
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Yiqin Lv 吕怡琴 &nbsp;·&nbsp; National University of Defense Technology
+  </footer>
+
+</div>
+</body>
+</html>
